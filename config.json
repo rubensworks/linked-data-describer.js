@@ -1,0 +1,6 @@
+{
+  "sources": [
+    "https://data.linkeddatafragments.org/eswc2020"
+  ],
+  "port": 8080
+}
