@@ -1,5 +1,6 @@
 import {ActorInitSparql} from "@comunica/actor-init-sparql/lib/ActorInitSparql-browser";
 import {createServer, IncomingMessage, Server as HttpServer, ServerResponse} from "http";
+import {parse as parseUrl, resolve} from "url";
 
 /**
  * A server for hosting Linked Data documents that can be found within configured RDF sources.
@@ -8,13 +9,15 @@ export class Server {
 
   private readonly engine: ActorInitSparql;
   private readonly context: any;
+  private readonly baseIRI: string;
   private readonly htmlView: string;
 
   private httpServer: HttpServer;
 
-  constructor(engine: ActorInitSparql, context: any) {
+  constructor(engine: ActorInitSparql, context: any, baseIRI: string) {
     this.engine = engine;
     this.context = context;
+    this.baseIRI = baseIRI;
     this.htmlView = `TODO`;
   }
 
@@ -46,7 +49,7 @@ export class Server {
     });
     this.httpServer.listen(port);
 
-    process.stdout.write(`Server is running on http://localhost:${port}\n`);
+    process.stdout.write(`Server is running on ${this.baseIRI}\n`);
   }
 
   /**
@@ -91,7 +94,8 @@ export class Server {
     }
 
     // Execute query
-    const url = 'https://metadata.2020.eswc-conferences.org/rdf/ontology/Conference'; // TODO: define dynamically
+    const {path} = parseUrl(request.url);
+    const url = resolve(this.baseIRI, path);
     const result = await this.engine.query(`DESCRIBE <${url}>`, this.context);
 
     // Serialize to proper format

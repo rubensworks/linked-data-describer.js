@@ -14,5 +14,11 @@ if (process.argv.length !== 3) {
 
 // Start server
 const context = JSON.parse(readFileSync(join(process.cwd(), process.argv[2]), 'utf8'));
-const server = new Server(newEngine(), context);
-server.start(context.port || 8080);
+if (!('port' in context)) {
+  context.port = 8080;
+}
+if (!('baseIRI' in context)) {
+  context.baseIRI = `http://localhost:${context.port}/`;
+}
+const server = new Server(newEngine(), context, context.baseIRI);
+server.start(context.port);
