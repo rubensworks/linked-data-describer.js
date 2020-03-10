@@ -13,7 +13,6 @@
             .then(async (response) => {
               const triples = await response.text();
               var config = {
-                verbose: true,
                 plugins: {
                   triples: true,
                   map: {
