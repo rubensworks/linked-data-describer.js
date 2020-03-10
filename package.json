@@ -19,6 +19,8 @@
   "homepage": "https://github.com/rubensworks/linked-data-describer.js#readme",
   "license": "MIT",
   "files": [
+    "bin/**/*.d.ts",
+    "bin/**/*.js",
     "lib/**/*.d.ts",
     "lib/**/*.js",
     "index.d.ts",
@@ -67,12 +69,16 @@
     "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls",
     "lint": "tslint index.ts lib/**/*.ts test/**/*.ts --exclude '**/*.d.ts'",
     "build": "tsc",
+    "build-watch": "tsc --watch",
     "validate": "npm ls",
     "prepare": "npm run build",
     "version": "manual-git-changelog onversion"
   },
   "dependencies": {
     "@comunica/actor-init-sparql": "1.10.0",
-    "@types/rdf-js": "^2.0.11"
+    "@types/minimist": "^1.2.0",
+    "@types/rdf-js": "^2.0.11",
+    "minimist": "^1.2.0",
+    "negotiate": "^1.0.1"
   }
 }
