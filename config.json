@@ -3,5 +3,6 @@
     "https://data.linkeddatafragments.org/eswc2020"
   ],
   "port": 8080,
-  "baseIRI": "https://metadata.2020.eswc-conferences.org/"
+  "baseIRI": "https://metadata.2020.eswc-conferences.org/",
+  "title": "My App"
 }

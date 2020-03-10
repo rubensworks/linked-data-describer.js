@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>__TITLE__</title>
+    </head>
+    <body>
+        <div data-rdftohtml-plugin='triples'></div>
+        <div data-rdftohtml-plugin='ontology'></div>
+        <div data-rdftohtml-plugin='paging'></div>
+        <script type="text/javascript" src="/assets/rdf2html.js"></script>
+        <script type="text/javascript">
+          fetch(document.documentURI, { headers: { 'Accept': 'text/turtle' } })
+            .then(async (response) => {
+              const triples = await response.text();
+              var config = {
+                verbose: true,
+                plugins: {
+                  triples: true,
+                  map: {
+                    // Base path on which the assets are provided
+                    assetsBase: '/assets'
+                  },
+                  ontology: true,
+                  paging: true
+                }
+              };
+              rdf2html(triples, config);
+            });
+        </script>
+    </body>
+</html>

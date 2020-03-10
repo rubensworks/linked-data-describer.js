@@ -23,5 +23,8 @@ if (!('baseIRI' in context)) {
 if (!('cacheDuration' in context)) {
   context.cacheDuration = 60000;
 }
+if (!('title' in context)) {
+  context.title = 'Linked Data Describer';
+}
 const server = new Server(newEngine(), context);
 server.start(context.port);

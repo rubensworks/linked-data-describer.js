@@ -1,5 +1,8 @@
 import {ActorInitSparql} from "@comunica/actor-init-sparql/lib/ActorInitSparql-browser";
-import {createServer, IncomingMessage, Server as HttpServer, ServerResponse} from "http";
+import {readFileSync} from "fs";
+import {createServer, IncomingMessage, OutgoingHttpHeaders, Server as HttpServer, ServerResponse} from "http";
+import {getType as lookupMime} from "mime";
+import {join} from "path";
 import {parse as parseUrl, resolve} from "url";
 
 /**
@@ -20,7 +23,8 @@ export class Server {
     this.context = context;
     this.baseIRI = context.baseIRI;
     this.cacheDuration = context.cacheDuration;
-    this.htmlView = `TODO`;
+    this.htmlView = readFileSync(join(__dirname, '../assets/', 'view.html'), 'utf8')
+      .replace(/__TITLE__/, context.title);
   }
 
   /**
@@ -56,6 +60,12 @@ export class Server {
     this.setClearCacheTimer();
   }
 
+  public getHeaders(mediaType: string): OutgoingHttpHeaders {
+    return {
+      'Content-Type': mediaType.indexOf('text/') ? mediaType : mediaType + ';charset=utf-8',
+    };
+  }
+
   /**
    * Construct a response for a given request.
    * @param request An HTTP request to read from.
@@ -64,6 +74,15 @@ export class Server {
    */
   public async constructResponse(request: IncomingMessage, response: ServerResponse,
                                  mediaTypeVariants: { type: string, quality: number }[]) {
+    // First check for an assets request
+    const { path } = parseUrl(request.url);
+    if (path.startsWith('/assets')) {
+      const filePath = path.replace(/^\/assets/, join(__dirname, '../assets'));
+      response.writeHead(200, this.getHeaders(lookupMime(filePath)));
+      response.end(readFileSync(filePath));
+      return;
+    }
+
     // Validate HTTP method
     if (request.method !== 'GET' && request.method !== 'HEAD') {
       response.writeHead(405);
@@ -79,9 +98,7 @@ export class Server {
       return;
     }
     const mediaType: string = acceptedMediaTypes[0].type;
-    const headers = {
-      'Content-Type': mediaType,
-    };
+    const headers = this.getHeaders(mediaType);
 
     // Stop further processing on HEAD requests
     if (request.method === 'HEAD') {
@@ -98,7 +115,6 @@ export class Server {
     }
 
     // Execute query
-    const {path} = parseUrl(request.url);
     const url = resolve(this.baseIRI, path);
     const result = await this.engine.query(`DESCRIBE <${url}>`, this.context);
 
