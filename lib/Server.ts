@@ -10,14 +10,16 @@ export class Server {
   private readonly engine: ActorInitSparql;
   private readonly context: any;
   private readonly baseIRI: string;
+  private readonly cacheDuration: number;
   private readonly htmlView: string;
 
   private httpServer: HttpServer;
 
-  constructor(engine: ActorInitSparql, context: any, baseIRI: string) {
+  constructor(engine: ActorInitSparql, context: any) {
     this.engine = engine;
     this.context = context;
-    this.baseIRI = baseIRI;
+    this.baseIRI = context.baseIRI;
+    this.cacheDuration = context.cacheDuration;
     this.htmlView = `TODO`;
   }
 
@@ -50,6 +52,8 @@ export class Server {
     this.httpServer.listen(port);
 
     process.stdout.write(`Server is running on ${this.baseIRI}\n`);
+
+    this.setClearCacheTimer();
   }
 
   /**
@@ -104,4 +108,10 @@ export class Server {
     data.pipe(response);
   }
 
+  private setClearCacheTimer() {
+    setTimeout(() => {
+      this.engine.invalidateHttpCache();
+      this.setClearCacheTimer();
+    }, this.cacheDuration);
+  }
 }

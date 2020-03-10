@@ -20,5 +20,8 @@ if (!('port' in context)) {
 if (!('baseIRI' in context)) {
   context.baseIRI = `http://localhost:${context.port}/`;
 }
-const server = new Server(newEngine(), context, context.baseIRI);
+if (!('cacheDuration' in context)) {
+  context.cacheDuration = 60000;
+}
+const server = new Server(newEngine(), context);
 server.start(context.port);
