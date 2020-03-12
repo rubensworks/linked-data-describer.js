@@ -68,17 +68,14 @@ export class Server {
   }
 
   public getQuery(path: string): string {
-    if (path === '/') {
-      return `
+    const url = resolve(this.baseIRI, path);
+    return `
 CONSTRUCT {
   ?s ?p ?o
 } WHERE {
   ?s ?p ?o.
-  FILTER(regex(str(?s), "^${this.baseIRI}" ) )
+  FILTER(regex(str(?s), "^${url}" ) )
 }`;
-    }
-    const url = resolve(this.baseIRI, path);
-    return `DESCRIBE <${url}>`;
   }
 
   /**
