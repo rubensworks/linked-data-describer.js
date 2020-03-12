@@ -55,7 +55,7 @@ export class Server {
     });
     this.httpServer.listen(port);
 
-    process.stdout.write(`Server is running on ${this.baseIRI}\n`);
+    process.stdout.write(`Server is running on ${this.baseIRI} (internally: http://localhost:${port}/)\n`);
 
     this.setClearCacheTimer();
   }
