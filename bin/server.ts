@@ -26,5 +26,8 @@ if (!('cacheDuration' in context)) {
 if (!('title' in context)) {
   context.title = 'Linked Data Describer';
 }
+if (!('prefixes' in context)) {
+  context.prefixes = [];
+}
 const server = new Server(newEngine(), context);
 server.start(context.port);

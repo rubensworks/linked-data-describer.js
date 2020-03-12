@@ -24,7 +24,8 @@ export class Server {
     this.baseIRI = context.baseIRI;
     this.cacheDuration = context.cacheDuration;
     this.htmlView = readFileSync(join(__dirname, '../assets/', 'view.html'), 'utf8')
-      .replace(/__TITLE__/, context.title);
+      .replace(/__TITLE__/, context.title)
+      .replace(/__PREFIXES__/, JSON.stringify(context.prefixes));
   }
 
   /**

@@ -9,6 +9,10 @@
         <div data-rdftohtml-plugin='paging'></div>
         <script type="text/javascript" src="/assets/rdf2html.js"></script>
         <script type="text/javascript">
+          for (const prefix of __PREFIXES__) {
+            knownPrefixes.push(prefix);
+          }
+
           fetch(document.documentURI, { headers: { 'Accept': 'text/turtle' } })
             .then(async (response) => {
               const triples = await response.text();
