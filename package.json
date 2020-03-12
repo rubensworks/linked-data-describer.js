@@ -2,6 +2,9 @@
   "name": "linked-data-describer",
   "version": "1.0.0",
   "description": "Serves Linked Data documents via content negotiation over various data sources",
+  "bin": {
+    "linked-data-describer": "bin/server.js"
+  },
   "keywords": [
     "linked data",
     "linked data documents",
