@@ -1,0 +1,14 @@
+{
+  "sources": [
+    "http://mysource.example.org/document.ttl"
+  ],
+  "port": 8080,
+  "baseIRI": "https://mydomain.example.org/",
+  "title": "My App",
+  "prefixes": [
+    "http://xmlns.com/foaf/0.1/",
+    "http://www.w3.org/ns/earl#",
+    "http://purl.org/dc/terms/",
+    "http://purl.org/ontology/bibo/"
+  ]
+}

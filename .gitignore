@@ -1,6 +1,5 @@
 node_modules
 .idea
-lerna-debug.log
 yarn-error.log
 **/lib/**/*.js
 **/lib/**/*.js.map
@@ -11,11 +10,10 @@ yarn-error.log
 **/bin/**/*.js
 **/bin/**/*.js.map
 **/bin/**/*.d.ts
-**/perf/**/*.js
-**/perf/**/*.js.map
-**/perf/**/*.d.ts
 **/index.js
 **/index.js.map
 **/index.d.ts
+config.json
 coverage
 documentation
+
