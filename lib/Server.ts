@@ -62,12 +62,20 @@ export class Server {
     this.setClearCacheTimer();
   }
 
+  /**
+   * Construct HTTP headers containing the given media type as content type.
+   * @param mediaType A media type.
+   */
   public getHeaders(mediaType: string): OutgoingHttpHeaders {
     return {
       'Content-Type': mediaType.indexOf('text/') ? mediaType : mediaType + ';charset=utf-8',
     };
   }
 
+  /**
+   * Construct a SPARQL query for the given requested path.
+   * @param path A URL path that is requested.
+   */
   public getQuery(path: string): string {
     const url = resolve(this.baseIRI, path);
     return `
@@ -136,6 +144,9 @@ CONSTRUCT {
     data.pipe(response);
   }
 
+  /**
+   * Reset the cache clear timer.
+   */
   private setClearCacheTimer() {
     setTimeout(() => {
       this.engine.invalidateHttpCache();
