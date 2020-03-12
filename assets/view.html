@@ -2,11 +2,15 @@
 <html>
     <head>
         <title>__TITLE__</title>
+        <link rel="stylesheet" href="/assets/style.css" />
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     </head>
     <body>
-        <div data-rdftohtml-plugin='triples'></div>
-        <div data-rdftohtml-plugin='ontology'></div>
-        <div data-rdftohtml-plugin='paging'></div>
+        <div data-rdftohtml-plugin="triples" id="triples">
+            <div class="loading">Loading...</div>
+        </div>
+        <div data-rdftohtml-plugin="ontology"></div>
+        <section class="footer">__FOOTER__</section>
         <script type="text/javascript" src="/assets/rdf2html.js"></script>
         <script type="text/javascript">
           for (const prefix of __PREFIXES__) {
@@ -15,6 +19,7 @@
 
           fetch(document.documentURI, { headers: { 'Accept': 'text/turtle' } })
             .then(async (response) => {
+              document.getElementById('triples').innerHTML='';
               const triples = await response.text();
               var config = {
                 plugins: {
@@ -23,8 +28,7 @@
                     // Base path on which the assets are provided
                     assetsBase: '/assets'
                   },
-                  ontology: true,
-                  paging: true
+                  ontology: true
                 }
               };
               rdf2html(triples, config);

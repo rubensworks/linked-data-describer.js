@@ -25,7 +25,8 @@ export class Server {
     this.cacheDuration = context.cacheDuration;
     this.htmlView = readFileSync(join(__dirname, '../assets/', 'view.html'), 'utf8')
       .replace(/__TITLE__/, context.title)
-      .replace(/__PREFIXES__/, JSON.stringify(context.prefixes));
+      .replace(/__PREFIXES__/, JSON.stringify(context.prefixes))
+      .replace(/__FOOTER__/, context.footer || '');
   }
 
   /**

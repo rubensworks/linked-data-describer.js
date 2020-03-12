@@ -10,5 +10,6 @@
     "http://www.w3.org/ns/earl#",
     "http://purl.org/dc/terms/",
     "http://purl.org/ontology/bibo/"
-  ]
+  ],
+  "footer": "Generated with <a href=\"https://github.com/rubensworks/linked-data-describer.js\">Linked Data Describer</a>"
 }

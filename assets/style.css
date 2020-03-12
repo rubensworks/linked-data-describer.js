@@ -1,0 +1,45 @@
+body {
+    font: 400 16px/1.5 "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #111;
+    font-kerning: normal;
+}
+
+.loading {
+    text-align: center;
+    margin: 20px 0 60px;
+}
+
+.panel-title {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.subject {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#triples {
+    padding-bottom: 5px;
+    border-bottom: solid 2px #838383;
+}
+
+table.triples {
+    width: 100%;
+}
+table.triples, td {
+    border-collapse: collapse;
+    border: 1px solid white;
+    background-color: #e5e5e5;
+    padding: 5px;
+}
+table.triples tr > td:first-child {
+    width: 150px;
+}
+
+.footer {
+    margin-top: 20px;
+    color: #838383;
+    font-size: 12px;
+    text-align: center;
+}

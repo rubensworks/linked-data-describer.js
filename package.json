@@ -23,6 +23,7 @@
     "bin/**/*.js",
     "lib/**/*.d.ts",
     "lib/**/*.js",
+    "assets/**/*",
     "index.d.ts",
     "index.js"
   ],
