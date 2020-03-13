@@ -68,6 +68,9 @@ export class Server {
    */
   public getHeaders(mediaType: string): OutgoingHttpHeaders {
     return {
+      'Access-Control-Allow-Headers': 'Accept',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Expose-Headers': 'Content-Location,Link',
       'Content-Type': mediaType.indexOf('text/') ? mediaType : mediaType + ';charset=utf-8',
     };
   }
