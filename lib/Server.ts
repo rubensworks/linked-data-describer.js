@@ -72,6 +72,7 @@ export class Server {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Expose-Headers': 'Content-Location,Link',
       'Content-Type': mediaType.indexOf('text/') ? mediaType : mediaType + ';charset=utf-8',
+      'Vary': 'Accept',
     };
   }
 
