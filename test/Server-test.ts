@@ -16,6 +16,7 @@ describe('Server', () => {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Expose-Headers': 'Content-Location,Link',
         'Content-Type': 'text/html;charset=utf-8',
+        'Vary': 'Accept',
       });
     });
 
@@ -25,6 +26,7 @@ describe('Server', () => {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Expose-Headers': 'Content-Location,Link',
         'Content-Type': 'application/ld+json',
+        'Vary': 'Accept',
       });
     });
 
