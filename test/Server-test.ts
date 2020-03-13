@@ -12,12 +12,18 @@ describe('Server', () => {
 
     it('should handle text media types', async () => {
       expect(server.getHeaders('text/html')).toEqual({
+        'Access-Control-Allow-Headers': 'Accept',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Expose-Headers': 'Content-Location,Link',
         'Content-Type': 'text/html;charset=utf-8',
       });
     });
 
     it('should handle other media types', async () => {
       expect(server.getHeaders('application/ld+json')).toEqual({
+        'Access-Control-Allow-Headers': 'Accept',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Expose-Headers': 'Content-Location,Link',
         'Content-Type': 'application/ld+json',
       });
     });
