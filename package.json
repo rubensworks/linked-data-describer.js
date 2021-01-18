@@ -79,7 +79,7 @@
     "version": "manual-git-changelog onversion"
   },
   "dependencies": {
-    "@comunica/actor-init-sparql": "1.18.1",
+    "@comunica/actor-init-sparql": "1.19.0",
     "@types/mime": "^2.0.1",
     "@types/minimist": "^1.2.0",
     "@types/rdf-js": "*",
