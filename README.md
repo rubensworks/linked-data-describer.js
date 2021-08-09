@@ -1,6 +1,6 @@
 # Linked Data Describer
 
-[![Build Status](https://travis-ci.org/rubensworks/linked-data-describer.js.svg?branch=master)](https://travis-ci.org/rubensworks/linked-data-describer.js)
+[![Build status](https://github.com/rubensworks/linked-data-describer.js/workflows/CI/badge.svg)](https://github.com/rubensworks/linked-data-describer.js/actions?query=workflow%3ACI)
 [![Coverage Status](https://coveralls.io/repos/github/rubensworks/linked-data-describer.js/badge.svg?branch=master)](https://coveralls.io/github/rubensworks/linked-data-describer.js?branch=master)
 [![npm version](https://badge.fury.io/js/linked-data-describer.svg)](https://www.npmjs.com/package/linked-data-describer)
 
