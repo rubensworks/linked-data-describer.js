@@ -84,7 +84,7 @@
     "@rdfjs/types": "*",
     "@types/mime": "^2.0.1",
     "@types/minimist": "^1.2.0",
-    "mime": "^2.4.4",
+    "mime": "^4.0.0",
     "negotiate": "^1.0.1"
   }
 }
